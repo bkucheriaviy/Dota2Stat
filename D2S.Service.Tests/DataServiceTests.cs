@@ -7,6 +7,7 @@ namespace D2S.Service.Tests
     [TestFixture]
     public class DataServiceTests
     {
+        [Ignore("Not implemented yet")]
         [Test]
         [TestCase("11")]
         [TestCase("12")]

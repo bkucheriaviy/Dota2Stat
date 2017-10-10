@@ -12,4 +12,9 @@
   <ItemGroup>
     <ProjectReference Include="..\D2S.Service\D2S.Service.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources/*.*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

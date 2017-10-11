@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D2S.Core", "D2S.Core\D2S.Core.csproj", "{3BD63F95-FDBE-4FF8-B404-3D766CF5D9A9}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D2S.Service", "D2S.Service\D2S.Service.csproj", "{54EB295D-C2BA-4F3F-BE8A-2A37AF675FF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D2S.Service.Tests", "D2S.Service.Tests\D2S.Service.Tests.csproj", "{BA4DDFBB-3892-4860-A0B7-2AC5F7B6358F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D2S.Core", "D2S.Core\D2S.Core.csproj", "{3BD63F95-FDBE-4FF8-B404-3D766CF5D9A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

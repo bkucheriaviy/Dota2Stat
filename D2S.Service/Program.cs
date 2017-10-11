@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Dota2Stat
@@ -7,9 +8,11 @@ namespace Dota2Stat
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Starting service...");
-            Task.Run(() => { new DataService().Start(); });
-            Console.WriteLine("Data service started.");
+            var cts = new CancellationTokenSource();
+            var token = cts.Token;
+            Console.WriteLine("Starting services...");
+            Task.Run(async () => { await new DataService().Start(token); });
+            
         }
     }
 }

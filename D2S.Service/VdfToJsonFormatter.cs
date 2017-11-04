@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace D2S.Service
@@ -62,7 +64,7 @@ namespace D2S.Service
             return sb.ToString();
         }
 
-        public async Task Format(string vdfFilePath, IProgress<int> progress)
+        public async Task FormatFile(string vdfFilePath, IProgress<int> progress)
         {
             using (var fileStream = File.OpenRead(vdfFilePath))
             {
@@ -77,6 +79,36 @@ namespace D2S.Service
                             await writer.WriteLineAsync(jsonLine);
                         }
                     }
+                    var targetFileName = Path.ChangeExtension(jsonTmpFile, ".json");
+                    RenameFile(jsonTmpFile, targetFileName);
+                    Console.WriteLine($"{targetFileName} have been created.");Í
+                }
+            }
+        }
+
+        private void RenameFile(string sourceFile, string targetFile)
+        {
+            var maxRetryCount = 5;
+            var delayInSeconds = 1;
+            var retry = 1;
+            while (retry <= maxRetryCount)
+            {
+                Console.WriteLine($"Renaming {sourceFile} to {targetFile}. Attempt {retry} from {maxRetryCount}...");
+
+                try
+                {
+                    if (File.Exists(targetFile))
+                    {
+                        File.Delete(targetFile);
+                    }
+
+                    File.Move(sourceFile, targetFile);
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occured during remaming {sourceFile} to {targetFile}.\n{ex}");
+                    Thread.Sleep(TimeSpan.FromSeconds(delayInSeconds));
                 }
             }
         }

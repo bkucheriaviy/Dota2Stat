@@ -16,7 +16,7 @@ namespace D2S.Service
         public bool Key { get; set; }
         public bool Value { get; set; }
         public bool Comment { get; set; }
-
+        
         public static char Open_Brac = '{';
         public static char Closing_Brac = '}';
     }
@@ -62,7 +62,7 @@ namespace D2S.Service
                             else if (state.Opened && state.Key && !state.Value)
                             {
                                 sb.Append(c);
-                                sb.Append(':');
+                                sb.Append(':'); 
                                 state.Opened = false;
 
                                 continue;

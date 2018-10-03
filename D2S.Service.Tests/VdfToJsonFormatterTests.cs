@@ -1,10 +1,9 @@
 using System.IO;
-using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace D2S.Service.Tests
 {
-    [TestFixture]
+	[TestFixture]
     public class VdfToJsonFormatterTests
     {
         [Test]
@@ -16,24 +15,25 @@ namespace D2S.Service.Tests
             var formatter = new VdfToJsonFormatter();
 
             //when
-            var jsonLine = formatter.FormatLine(vdfText);
-
+            var jsonLine = formatter.Format(vdfText);
+            File.WriteAllText("./Resources/test.txt", jsonLine);
             //then
             Assert.That(jsonLine, Is.EqualTo(expectedJson));
         }
 
         [Test]
-        public void Format_GeneratesValidJson()
+        [TestCase("\"DOTAUnits\" { \"Version\" \"1\" \"npc_dota_units_base\" \"value 2\" }", "{\"DOTAUnits\": { \"Version\": \"1\", \"npc_dota_units_base\": \"value 2\" }")]
+        [TestCase("\"DOTAUnits\" { \"Version\" \"1\" \"npc_dota_units_base\" { \"key 1\" \"value 1\" \"key 2\" { \"key 3\" \"value 3\" }}", "{\"DOTAUnits\": { \"Version\": \"1\", \"npc_dota_units_base\": { \"key 1\": \"value 1\", \"key 2\": { \"key 3\": \"value 3\"}}")]
+        public void Format_FormatsDvfToJson(string input, string expected)
         {
             //given
             var formatter = new VdfToJsonFormatter();
 
             //when
-           // var result = formatter.Format(File.ReadAllText("./Resources/sample.dvf"));
-          //  var json = JsonConvert.DeserializeObject<Dota2Item>(result);
+            var jsonLine = formatter.Format(input);
 
             //then
-           // Assert.That(json, Is.Not.Null);
+            Assert.That(jsonLine, Is.EqualTo(expected));
         }
     }
 }

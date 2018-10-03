@@ -26,7 +26,7 @@ namespace Dota2Stat
             while (Console.ReadLine().ToLowerInvariant() != "exit")
             {
                 Console.WriteLine("Type 'exit' to shutdown...");
-            };
+            }
             Console.WriteLine("Goodbye!");
         }
     }

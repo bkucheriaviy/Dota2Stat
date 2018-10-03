@@ -5,6 +5,7 @@ using Moq;
 namespace D2S.Service.Tests
 {
     [TestFixture]
+    [Ignore("")]
     public class DataServiceTests
     {
         [Ignore("Not implemented yet")]
